@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import {navbarStyles, navbarCSS} from '../assets/dummyStyles';
-import { Calendar, Clapperboard, Film, Home, LogOut, Mail, Ticket, User } from 'lucide-react';
+import { Calendar, Clapperboard, Film, Home, LogOut, Mail, Menu, Ticket, User, X } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
@@ -113,7 +113,7 @@ const Navbar = () => {
                     {navItems.map((item) => {
                         const Icon = item.icon;
                         return(
-                            <div key={item.id} className={navbarStyles.desktopNavItem}>
+                            <div key={item.id} className={`navbarStyles.desktopNavItem mx-3`}>
                                 <NavLink to={item.path} end className={({isActive}) =>
                                 `${isActive ? navbarStyles.desktopNavLink.active : navbarStyles.desktopNavLink.inactive}`
                                 }>
@@ -164,12 +164,62 @@ const Navbar = () => {
                     </div>
 
                     {/* Toggle function */}
+                    <div className={navbarStyles.mobileMenuToggle}>
+                        <button onClick={()=> setIsMenuOpen((s) => !s)} className={navbarStyles.mobileMenuButton}>{ isMenuOpen ? (
+                            <X className={navbarStyles.mobileMenuIcon} />
+                        ):(
+                            <Menu className={navbarStyles.mobileMenuIcon} />
+                        )}
+
+                        </button>
+
+                    </div>
 
                 </div>
 
             </div>
 
+            {isMenuOpen && (
+                <div ref={menuRef} className={navbarStyles.mobileMenuPanel}>
+                    <div className={navbarStyles.mobileMenuItems}>
+                         {navItems.map((item) => {
+                        const Icon = item.icon;
+                        return(
+                            <NavLink key={item.id} to={item.path} end onClick={()=>setIsMenuOpen(false)} className={({isActive}) => 
+                            `${navbarStyles.mobileNavLink.base} ${
+                            isActive ? navbarStyles.mobileNavLink.active : navbarStyles.mobileNavLink.inactive
+                            }`}>
+                                <Icon className={navbarStyles.mobileNavIcon}/>
+                                <span className={navbarStyles.mobileNavText}>
+                                    {item.label}
+                                </span>
+                            </NavLink>
+                        )
+                    })}
+                    <div className={navbarStyles.mobileAuthSection}>
+                        {isLoggedIn ? (
+                            <button onClick={()=>{ setIsMenuOpen(false); handleLogout(); }} className={navbarStyles.mobileLogoutButton}>
+                                <LogOut className={navbarStyles.mobileAuthIcon}/>
+                                Logout
+
+                            </button>
+                        ):(
+                            <a href="/login" className={navbarStyles.mobileLoginButton} onClick={()=>setIsMenuOpen(false)}>
+                                <User className={navbarStyles.mobileAuthIcon}/>
+                                Login
+                            </a>
+                        )}
+
+                    </div>
+
+
+                    </div>
+
+                </div>
+            )}
+
         </div>
+        <style jsx>{navbarCSS}</style>
 
     </nav>
   )
