@@ -399,23 +399,25 @@ export const moviesPageStyles = {
 export const footerStyles = {
   // Main container
   footer: "relative bg-black text-white overflow-hidden border-t border-red-800",
-  
+
   // Animated border
   animatedBorder: "absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent animate-pulse",
-  
+
   // Background elements
   bgContainer: "absolute inset-0 opacity-5 pointer-events-none",
   bgGlow1: "absolute -top-12 -left-12 w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 bg-red-600 rounded-full filter blur-3xl animate-pulse",
   bgGlow2: "absolute -right-16 -bottom-16 w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-red-800 rounded-full filter blur-3xl",
-  
+
   // Floating icons
   floatingIconsContainer: "absolute inset-0 opacity-10 pointer-events-none hidden md:block",
   floatingIcon: "absolute text-red-600",
-  
+
   // Main content
   mainContainer: "relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-12 sm:py-14 md:py-16",
-  gridContainer: "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols- xl:grid-cols-4 gap-8 sm:gap-10 mb-12 md:mb-16",
-  
+
+  // Fix 2: was "lg:grid-cols-" (incomplete), now "lg:grid-cols-4"
+  gridContainer: "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-8 sm:gap-10 mb-12 md:mb-16",
+
   // Brand section
   brandContainer: "lg:col-span-1",
   brandLogoContainer: "flex items-center mb-4 sm:mb-6",
@@ -428,40 +430,40 @@ export const footerStyles = {
   socialContainer: "flex space-x-3 sm:space-x-5",
   socialLink: "text-gray-400 p-2 sm:p-3 rounded-full transform transition-all duration-300 hover:scale-110 hover:text-red-500 border border-gray-800 hover:border-red-600",
   socialIcon: "h-4 w-4 sm:h-5 sm:w-5",
-  
+
   // Section headers
   sectionHeader: "text-lg sm:text-xl font-bold mb-6 sm:mb-8 flex items-center text-red-600",
   sectionDot: "w-2.5 h-2.5 bg-red-600 rounded-full mr-3 animate-pulse",
-  
+
   // Links
   linksList: "space-y-3 sm:space-y-4",
   linkItem: "text-gray-400 hover:text-red-500 transition-all duration-300 flex items-center group transform hover:translate-x-2 text-sm sm:text-base",
   linkDot: "w-2 h-2 bg-red-600 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 inline-block",
-  
+
   // Contact info
   contactList: "space-y-4 sm:space-y-5 text-sm sm:text-base",
   contactItem: "flex items-start",
   contactIconContainer: "bg-black p-2 rounded-lg mr-3 border border-red-600",
   contactIcon: "h-4 w-4 sm:h-5 sm:w-5 text-red-500",
   contactText: "text-gray-400",
-  
+
   // Divider
   divider: "relative h-px bg-gradient-to-r from-transparent via-red-600 to-transparent mb-8 sm:mb-10",
   dividerIconContainer: "absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black p-1.5 sm:p-2 rounded-full border border-red-600",
   dividerIcon: "h-5 w-5 sm:h-6 sm:w-6 text-red-500",
-  
+
   // Bottom bar
   bottomBar: "flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-0",
   designedBy: "text-sm flex items-center",
-  designedByText: "text-gray-500 mr-2 text-xs sm:text-sm",
+  designedByText: "text-gray-500 mr-1 text-xs sm:text-sm",         // Fix 4: mr-1 for tighter spacing with &nbsp;
   designedByLink: "text-gray-500 font-medium hover:text-blue-500 transition-colors duration-300 text-xs sm:text-sm",
   policyLinks: "flex space-x-4 sm:space-x-6 text-xs sm:text-sm",
   policyLink: "text-gray-500 hover:text-red-500 transition-colors duration-300",
-  
-  // Scroll to top button
+
+  // Scroll to top button — Fix 1: separated button vs icon classes
   scrollTopButton: "fixed bottom-4 sm:bottom-6 right-4 sm:right-6 cursor-pointer bg-red-700 hover:bg-red-600 text-white p-3 sm:p-4 rounded-full shadow-lg transition-all duration-300 transform hover:-translate-y-1 z-20 group border border-red-500",
-  scrollTopIcon: "h-5 w-5 sm:h-6 sm:w-6",
-  
+  scrollTopIcon: "h-5 w-5 sm:h-6 sm:w-6",                         // Fix 1: new key for the ArrowUp icon
+
   // Custom CSS
   customCSS: `
     @keyframes float {
@@ -478,7 +480,7 @@ export const footerStyles = {
     .animate-float {
       will-change: transform;
     }
-  `
+  `,
 };
 
 // ... previous navbar and moviesPage styles ...
