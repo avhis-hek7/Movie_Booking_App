@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import { loginStyles } from "../assets/dummyStyles";
-import { ToastContainer } from "react-toastify";
-import { ArrowLeft, Film, LocateFixed } from "lucide-react";
+import { toast, ToastContainer } from "react-toastify";
+import {
+  ArrowLeft,
+  Clapperboard,
+  Eye,
+  EyeOff,
+  Film,
+  LocateFixed,
+  Popcorn,
+} from "lucide-react";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +18,47 @@ const LoginPage = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  // handle Submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    if (!formData.password || formData.password.length < 6) {
+      setIsLoading(false);
+      toast.error("Password must be atleast of 6 characters long");
+      console.warn("Login Blocked");
+      return;
+    }
+    console.log("Login Data:", formData);
+
+    setTimeout(() => {
+      setIsLoading(false);
+
+      // Persist auth to localStorage so Navbar detects logged-in state
+      try {
+        const authObj = { isLoggedIn: true, email: formData.email };
+        localStorage.setItem("cine_auth", JSON.stringify(authObj));
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("userEmail", formData.email || "");
+        localStorage.setItem("cine_user_email", formData.email || "");
+        console.log("Auth saved to localStorage:", authObj);
+      } catch (err) {
+        console.error("Failed to Login:", err);
+      }
+      toast.success("Login Successfully! Redirecting to your cinema...");
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 2000);
+    }, 1500);
+  };
 
   const goBack = () => {
     window.history.back();
@@ -39,20 +88,107 @@ const LoginPage = () => {
         </div>
 
         <div className={loginStyles.cardContainer}>
-            <div className={loginStyles.cardHeader}></div>
-            <div className={loginStyles.cardContent}>
-                <div className={loginStyles.headerContainer}>
-                    <div className={loginStyles.headerIconContainer}>
-                        <Film  className={loginStyles.headerIcon} size={28}/>
-                        <h2 className={loginStyles.headerTitle}>CINEMA ACCESS</h2>
+          <div className={loginStyles.cardHeader}></div>
+          <div className={loginStyles.cardContent}>
+            <div className={loginStyles.headerContainer}>
+              <div className={loginStyles.headerIconContainer}>
+                <Film className={loginStyles.headerIcon} size={28} />
+                <h2 className={loginStyles.headerTitle}>CINEMA ACCESS</h2>
+              </div>
+              <p className={loginStyles.headerSubtitle}>
+                Enter your credentials to continue the experience.
+              </p>
+            </div>
+            <form onSubmit={handleSubmit}>
+              <div className={loginStyles.inputGroup}>
+                <label htmlFor="email" className={loginStyles.label}>
+                  EMAIL ADDRESS
+                </label>
+                <div className={loginStyles.inputContainer}>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    className={loginStyles.input}
+                    placeholder="Your Email Address"
+                  />
 
-                    </div>
+                  <div className={loginStyles.inputIcon}>
+                    <Clapperboard size={16} className="text-red-500 " />
+                  </div>
+                </div>
+              </div>
+
+              <div className={loginStyles.inputGroup}>
+                <label htmlFor="password" className={loginStyles.label}>
+                  PASSWORD
+                </label>
+                <div className={loginStyles.inputContainer}>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    name="password"
+                    required
+                    value={formData.password}
+                    onChange={handleChange}
+                    className={loginStyles.inputWithIcon}
+                    placeholder="Enter Your Password"
+                  />
+                  <button
+                    type="button"
+                    className={loginStyles.passwordToggle}
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {!showPassword ? (
+                      <EyeOff
+                        size={18}
+                        className={loginStyles.passwordToggleIcon}
+                      />
+                    ) : (
+                      <Eye
+                        size={18}
+                        className={loginStyles.passwordToggleIcon}
+                      />
+                    )}
+                  </button>
+                </div>
+              </div>
+
+              <button type="submit" disabled={isLoading} className={`${loginStyles.submitButton} ${isLoading ? loginStyles.submitButtonDisabled : ""}`}>
+               {isLoading ? (
+                <div className={loginStyles.buttonContent}>
+                  <div className={loginStyles.loadingSpinner}></div>
+                  <span className={loginStyles.buttonText}>SIGNING IN...</span>
 
                 </div>
-            </div>
+               ):(
+                 <div className={loginStyles.buttonContent}>
+                  <Popcorn  size={18} className={loginStyles.buttonIcon}/>
+                  <span className={loginStyles.buttonText}>ACCESS YOUR ACCOUNT</span>
+
+                </div>
+               )}
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div className={loginStyles.footerContainer}>
+          <p className={loginStyles.footerText}>
+            Don't have account?{" "}
+            <a href="/signup" className={loginStyles.footerLink}>
+            Create one now
+            </a>
+
+          </p>
 
         </div>
       </div>
+
+      <style>{loginStyles.customCSS}</style>
     </div>
   );
 };

@@ -151,6 +151,7 @@ const Navbar = () => {
                     <div className={navbarStyles.desktopAuth}>
                         { isLoggedIn ? (
                             <button title={userEmail || 'Logout'} onClick={handleLogout} className={navbarStyles.logoutButton}>
+                                <LogOut className={navbarStyles.authIcon} />
                                 <span>Logout</span>
                             </button>
                         ):(
