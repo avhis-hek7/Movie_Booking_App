@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { signUpStyles, signUpCSS } from "../assets/dummyStyles";
+import { signUpStyles } from "../assets/dummyStyles";
 import { toast, ToastContainer } from "react-toastify";
 import { ArrowLeft, Calendar, Clapperboard, Eye, EyeOff, Film, Lock, Mail, Phone, Ticket, User } from "lucide-react";
 
