@@ -143,12 +143,12 @@ const LoginPage = () => {
                     onClick={() => setShowPassword(!showPassword)}
                   >
                     {!showPassword ? (
-                      <EyeOff
+                      <Eye
                         size={18}
                         className={loginStyles.passwordToggleIcon}
                       />
                     ) : (
-                      <Eye
+                      <EyeOff
                         size={18}
                         className={loginStyles.passwordToggleIcon}
                       />
