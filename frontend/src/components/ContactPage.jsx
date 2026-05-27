@@ -1,10 +1,17 @@
-
 import React, { useState } from "react";
 import { contactStyles } from "../assets/dummyStyles";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { Mail, MapPin, MessageCircle, Phone, Popcorn, Send, TicketPercent } from "lucide-react";
+import {
+  Mail,
+  MapPin,
+  MessageCircle,
+  Phone,
+  Popcorn,
+  Send,
+  TicketPercent,
+} from "lucide-react";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -60,10 +67,7 @@ Message: ${formData.message}
     const encodedMessage = encodeURIComponent(whatsappMessage);
 
     // Open WhatsApp
-    window.open(
-      `https://wa.me/8299431275?text=${encodedMessage}`,
-      "_blank"
-    );
+    window.open(`https://wa.me/8299431275?text=${encodedMessage}`, "_blank");
 
     toast.success("Message sent successfully!");
 
@@ -153,18 +157,12 @@ Message: ${formData.message}
               </h2>
 
               {/* Form */}
-              <form
-                onSubmit={handleSubmit}
-                className={contactStyles.form}
-              >
+              <form onSubmit={handleSubmit} className={contactStyles.form}>
                 {/* Name + Email */}
                 <div className={contactStyles.formGrid}>
                   {/* Name */}
                   <div>
-                    <label
-                      htmlFor="name"
-                      className={contactStyles.inputGroup}
-                    >
+                    <label htmlFor="name" className={contactStyles.inputGroup}>
                       Full Name *
                     </label>
 
@@ -182,10 +180,7 @@ Message: ${formData.message}
 
                   {/* Email */}
                   <div>
-                    <label
-                      htmlFor="email"
-                      className={contactStyles.inputGroup}
-                    >
+                    <label htmlFor="email" className={contactStyles.inputGroup}>
                       Email Address *
                     </label>
 
@@ -204,10 +199,7 @@ Message: ${formData.message}
 
                 {/* Phone */}
                 <div>
-                  <label
-                    htmlFor="phone"
-                    className={contactStyles.inputGroup}
-                  >
+                  <label htmlFor="phone" className={contactStyles.inputGroup}>
                     Phone Number *
                   </label>
 
@@ -229,10 +221,7 @@ Message: ${formData.message}
 
                 {/* Subject */}
                 <div>
-                  <label
-                    htmlFor="subject"
-                    className={contactStyles.inputGroup}
-                  >
+                  <label htmlFor="subject" className={contactStyles.inputGroup}>
                     Subject *
                   </label>
 
@@ -245,31 +234,20 @@ Message: ${formData.message}
                     className={contactStyles.select}
                   >
                     <option value="">Select a subject</option>
-                    <option value="Ticket Booking">
-                      Ticket Booking
-                    </option>
-                    <option value="Group Events">
-                      Group Events
-                    </option>
+                    <option value="Ticket Booking">Ticket Booking</option>
+                    <option value="Group Events">Group Events</option>
                     <option value="Membership Inquiry">
                       Membership Inquiry
                     </option>
-                    <option value="Technical Issue">
-                      Technical Issue
-                    </option>
-                    <option value="Refund Request">
-                      Refund Request
-                    </option>
+                    <option value="Technical Issue">Technical Issue</option>
+                    <option value="Refund Request">Refund Request</option>
                     <option value="Other">Other</option>
                   </select>
                 </div>
 
                 {/* Message */}
                 <div>
-                  <label
-                    htmlFor="message"
-                    className={contactStyles.inputGroup}
-                  >
+                  <label htmlFor="message" className={contactStyles.inputGroup}>
                     Message *
                   </label>
 
@@ -286,10 +264,7 @@ Message: ${formData.message}
                 </div>
 
                 {/* Button */}
-                <button
-                  type="submit"
-                  className={contactStyles.submitButton}
-                >
+                <button type="submit" className={contactStyles.submitButton}>
                   Send via WhatsApp
                   <Send className={contactStyles.buttonIcon} />
                 </button>
@@ -309,8 +284,7 @@ Message: ${formData.message}
                 <div className={contactStyles.contactInfo}>
                   <div className={contactStyles.contactItem}>
                     <div className={contactStyles.contactIconContainer}>
-                      <Phone className={contactStyles.contactIcon}/>
-
+                      <Phone className={contactStyles.contactIcon} />
                     </div>
                     <div>
                       <h3 className={contactStyles.contactText}>
@@ -318,17 +292,13 @@ Message: ${formData.message}
                       </h3>
                       <p className={contactStyles.contactDetail}>
                         +977 9804167307
-
                       </p>
-                      
                     </div>
-
                   </div>
 
-                   <div className={contactStyles.contactItem}>
+                  <div className={contactStyles.contactItem}>
                     <div className={contactStyles.contactIconContainer}>
-                      <Mail className={contactStyles.contactIcon}/>
-
+                      <Mail className={contactStyles.contactIcon} />
                     </div>
                     <div>
                       <h3 className={contactStyles.contactText}>
@@ -336,45 +306,34 @@ Message: ${formData.message}
                       </h3>
                       <p className={contactStyles.contactDetail}>
                         booking@contact.com
-
                       </p>
                       <p className={contactStyles.contactDetail}>
                         support@cineplex.com
-
                       </p>
                     </div>
-
                   </div>
 
-
-                   <div className={contactStyles.contactItem}>
+                  <div className={contactStyles.contactItem}>
                     <div className={contactStyles.contactIconContainer}>
-                      <MapPin className={contactStyles.contactIcon}/>
-
+                      <MapPin className={contactStyles.contactIcon} />
                     </div>
                     <div>
                       <h3 className={contactStyles.contactText}>
                         Main Theater Location
                       </h3>
                       <p className={contactStyles.contactDetail}>
-                        New Rd, Pokhara 33700, Nepal 
-
+                        New Rd, Pokhara 33700, Nepal
                       </p>
                       <p className={contactStyles.contactDetail}>
                         +2 other locations across the city
-
                       </p>
                     </div>
-
                   </div>
-
                 </div>
-
               </div>
-
             </div>
 
-             <div className={contactStyles.cardRelative}>
+            <div className={contactStyles.cardRelative}>
               <div className={contactStyles.emergencyCardGradient}></div>
               <div className={contactStyles.emergencyCard}>
                 <h3 className={contactStyles.emergencyTitle}>
@@ -382,17 +341,19 @@ Message: ${formData.message}
                   Urgent Show-Related Issues
                 </h3>
                 <p className={contactStyles.emergencyText}>
-                  For urgent issues during a movie screening (sound, projection, etc.)
+                  For urgent issues during a movie screening (sound, projection,
+                  etc.)
                 </p>
                 <div className="flex items-center">
                   <div className={contactStyles.emergencyHotline}>
                     HOTLINE: +977 9804167307
                   </div>
-                  <span className={contactStyles.emergencyNote}>Available during showtimes</span>
+                  <span className={contactStyles.emergencyNote}>
+                    Available during showtimes
+                  </span>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
