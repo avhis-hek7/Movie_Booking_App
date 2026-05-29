@@ -281,7 +281,7 @@ const MovieDetailPage = () => {
   return (
     <div className={movieDetailStyles.container}>
       {showTrailer &&
-        selectedTrailerId(
+        selectedTrailerId && (
           <div className={movieDetailStyles.modalOverlay}>
             <div className={movieDetailStyles.modalContainer}>
               <button
