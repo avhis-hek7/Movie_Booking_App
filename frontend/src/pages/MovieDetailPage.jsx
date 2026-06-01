@@ -304,7 +304,7 @@ const MovieDetailPage = () => {
                 />
               </div>
             </div>
-          </div>,
+          </div>
         )}
       <div className={movieDetailStyles.wrapper}>
         <div className={movieDetailStyles.header}>
