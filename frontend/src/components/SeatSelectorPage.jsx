@@ -180,6 +180,7 @@ const SeatSelectorPage = () => {
     <div className={seatSelectorStyles.pageContainer}>
       <style>{seatSelectorStyles.customCSS}</style>
       <div className={seatSelectorStyles.mainContainer}>
+        <div className={seatSelectorStyles.headerContainer}>
         <button
           onClick={() => navigate(-1)}
           className={seatSelectorStyles.backButton}
@@ -422,6 +423,7 @@ const SeatSelectorPage = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
